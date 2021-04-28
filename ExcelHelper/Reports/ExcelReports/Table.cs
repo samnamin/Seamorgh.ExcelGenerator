@@ -8,6 +8,7 @@ namespace ExcelHelper.Reports.ExcelReports
         public Table()
         {
             Rows = new List<Row>();
+            MergedCells = new List<string>();
         }
 
         public DataTable Data { get; set; }

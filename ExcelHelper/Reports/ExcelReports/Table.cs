@@ -37,7 +37,7 @@ namespace ExcelHelper.Reports.ExcelReports
         {
             get
             {
-                return new Location(EndLocation.X + StartLocation.X, EndLocation.Y + 1);
+                return new Location(EndLocation.X - StartLocation.X, EndLocation.Y + 1);
             }
         }
 

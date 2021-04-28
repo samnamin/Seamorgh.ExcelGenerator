@@ -36,7 +36,7 @@ namespace ExcelHelper.Reports.ExcelReports
         {
             get
             {
-                return new Location(EndLocation.X + 1, EndLocation.Y - StartLocation.Y);
+                return new Location(EndLocation.X + 1, EndLocation.Y - StartLocation.Y + 1);
             }
         }
 
@@ -57,7 +57,7 @@ namespace ExcelHelper.Reports.ExcelReports
 
         public Column GetColumn(int X)
         {
-            return Columns.Where(x=>x.Location.X==X).FirstOrDefault();
+            return Columns.Where(x => x.Location.X == X).FirstOrDefault();
         }
     }
 }

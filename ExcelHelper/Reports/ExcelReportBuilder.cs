@@ -4,7 +4,6 @@ using ExcelHelper.Reports.ExcelReports.PropertyOptions;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Data;
 using System.Reflection;
 
 namespace ExcelHelper.Reports
@@ -43,10 +42,11 @@ namespace ExcelHelper.Reports
         {
             if (list is IEnumerable columns)
             {
-                Row row = new();
-                var location = options.StartLocation;
-                row.StartLocation = location;
 
+                Row row = new();
+                row.StartLocation = new Location(options.StartLocation.X, options.StartLocation.Y);
+                row.EndLocation = new Location(options.StartLocation.X, options.StartLocation.Y);
+                var location =new Location(options.StartLocation.X,options.StartLocation.Y);
                 foreach (var column in columns)
                 {
                     if (column is string)
@@ -67,8 +67,7 @@ namespace ExcelHelper.Reports
                         }
                     }
                 }
-                location.Y++;
-                row.EndLocation = location;
+                row.EndLocation = new Location(location.X-1, location.Y) ;
                 return row;
             }
             return null;
@@ -106,11 +105,12 @@ namespace ExcelHelper.Reports
             {
                 Table table = new();
                 var location = options.StartLocation;
-                table.StartLocation = location;
+                table.StartLocation = new Location(location.X, location.Y);
+                table.EndLocation = new Location(location.X, location.Y);
                 foreach (var item in rows)
                 {
                     table.Rows.Add(AddRow(new List<object> { item }, new RowPropertyOptions(location)));
-                    location.X++;
+                    location.Y++;
                 }
                 table.EndLocation = location;
                 return table;
@@ -179,7 +179,7 @@ namespace ExcelHelper.Reports
             {
                 case "Debit":
                     column.Align = TextAlign.rtl;
-                    column.AutoFill=true;
+                    column.AutoFill = true;
                     column.Category = Category.Currency;
                     break;
                 case "Credit":

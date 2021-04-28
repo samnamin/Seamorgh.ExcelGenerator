@@ -14,13 +14,13 @@ namespace ExcelHelper.Reports.ExcelReports.Template
             var row = builder.AddRow(new List<string> { "کد حساب", "بدهکار", "بستانکار" }, new RowPropertyOptions(new Location("A", 3)));
             var column = builder.AddColumn(result.ReportName,"ReportName", new ColumnPropertyOptions(new Location("H", 1)));
             var table = builder.AddTable(result.RowResult, new TablePropertyOptions(new Location("A", 4)));
-            var currentLocation = new Location(1, table.EndLocation.Y);
+            var currentLocation = table.NextVerticalLocation;
             var row2 = builder.AddRow(new List<string> { "کد حساب", "بدهکار", "بستانکار" }, new RowPropertyOptions(currentLocation));
             currentLocation = new Location(currentLocation.X, currentLocation.Y + 1);
             var table2 = builder.AddTable(result.RowResult, new TablePropertyOptions(currentLocation));
             currentLocation = new Location(currentLocation.X, currentLocation.Y + 1);
             var accountheader = TableTemplates.AccountHeader(currentLocation);
-            currentLocation = new Location(currentLocation.X + 1, currentLocation.Y);
+            currentLocation = new Location(currentLocation.X , currentLocation.Y+1);
             var multiplexHeader = TableTemplates.Multiplex(result.SummaryAccounts, currentLocation);
 
 

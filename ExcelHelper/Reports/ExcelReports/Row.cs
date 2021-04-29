@@ -36,7 +36,9 @@ namespace ExcelHelper.Reports.ExcelReports
         {
             get
             {
-                return new Location(EndLocation.X + 1, EndLocation.Y - StartLocation.Y + 1);
+                var y = EndLocation.Y - (EndLocation.Y - StartLocation.Y);
+                return new Location(EndLocation.X + 1, y);
+
             }
         }
 
@@ -51,7 +53,9 @@ namespace ExcelHelper.Reports.ExcelReports
         {
             get
             {
-                return new Location(EndLocation.X + StartLocation.X, EndLocation.Y + 1);
+                var x = EndLocation.X - (EndLocation.X - StartLocation.X);
+                return new Location(x, EndLocation.Y + 1);
+
             }
         }
 

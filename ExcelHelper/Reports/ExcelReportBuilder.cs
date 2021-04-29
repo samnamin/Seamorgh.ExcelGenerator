@@ -61,7 +61,7 @@ namespace ExcelHelper.Reports
                         {
                             if (column != null)
                             {
-                                row.Columns.Add(AddColumn(column, prop.Name, new ColumnPropertyOptions(location)));
+                                row.Columns.Add(AddColumn(column, prop.Name, new ColumnPropertyOptions(new Location(location.X,location.Y))));
                                 location.X++;
                             }
                         }

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 
 namespace ExcelHelper.Reports.ExcelReports
 {
@@ -30,14 +31,16 @@ namespace ExcelHelper.Reports.ExcelReports
         {
             get
             {
-                return new Location(EndLocation.X + 1, EndLocation.Y - StartLocation.Y);
+                var y = Rows.LastOrDefault().EndLocation.Y - (Rows.LastOrDefault().EndLocation.Y - Rows.LastOrDefault().StartLocation.Y);
+                return new Location(Rows.LastOrDefault().EndLocation.X + 1, y);
             }
         }
         public Location NextVerticalLocation
         {
             get
             {
-                return new Location(EndLocation.X - StartLocation.X, EndLocation.Y + 1);
+                var x = Rows.LastOrDefault().EndLocation.X -(Rows.LastOrDefault().EndLocation.X - Rows.LastOrDefault().StartLocation.X) ;
+                return new Location(x, Rows.LastOrDefault().EndLocation.Y + 1);
             }
         }
 
